@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>포트폴리오 상세정보</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="moreInfo">
+    <h3><b>필모그래피</b></h3>
+    <div class="row py-2 px-3">
+      <table class="table-borderless">
+      <colgroup>
+            <col width=25%>
+            <col width=25%>
+            <col width=25%>
+            <col width=25%>
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">제목</th>
+            <th scope="col">구분</th>
+            <th scope="col">비중</th>
+            <th scope="col">역할이름</th>
+          </tr>
+        </thead>
+        <tbody>
+        <th:block th:if="${filmo.isEmpty()}">
+        	<tr>
+        		<td>---- 등록된 필모그래피가 없습니다 ----</td>
+        	</tr>
+        </th:block>
+        <th:block th:unless="${filmo.isEmpty()}">
+          <th:block th:each="filmo : ${filmo} ">
+            <tr>
+              <td th:text="${filmo.filmo_title}"></td>
+              <td th:text="${filmo.filmo_div}"></td>
+              <td th:text="${filmo.filmo_imp}"></td>
+              <td th:text="${filmo.filmo_name}"></td>
+            </tr>
+          </th:block>
+        </th:block>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+    <h3><b>학력</b></h3>
+    <div class="row py-2 px-3">
+      <table class="table-borderless">
+      <colgroup>
+            <col width=25%>
+            <col width=25%>
+            <col width=25%>
+            <col width=25%>
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">기간</th>
+            <th scope="col">학교명</th>
+            <th scope="col">전공</th>
+            <th scope="col">졸업</th>
+          </tr>
+        </thead>
+        <tbody>
+          <th:block th:each="edu : ${edu} ">
+            <tr>
+              <!-- <td th:text="${edu.edu_firstPeriod}"></td>
+              <td th:text="${edu.edu_endPeriod}"></td> -->
+              <td>[[${edu.edu_firstPeriod}]]~[[${edu.edu_endPeriod}]]</td>
+              <!-- <td th:text="${edu.edu_schoolName}"></td>
+                <td th:text="${edu.edu_school}"></td> -->
+              <td>[[${edu.edu_schoolName}]][[${edu.edu_school}]]</td>
+              <td th:text="${edu.edu_major}"></td>
+              <td th:text="${edu.edu_graduated}"></td>
+            </tr>
+          </th:block>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

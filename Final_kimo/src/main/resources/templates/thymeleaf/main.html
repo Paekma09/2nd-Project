@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>KKIMO Video Interview Main</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/main.css"/>
+    <style type="text/css">
+        header {
+            background-color: #020204;
+            color: white;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="text-center">
+<main role="main" class="container">
+    <header>
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col-12" style="margin-top: 30px;">
+                    <a href="#"><img src="/resources/img/logo_header.png" width="8%"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h1>KKIMO Video Interview 대기실</h1>
+    <div id="container">
+        <p>
+            새로운 인터뷰 룸을 생성하시거나 안내 받은 인터뷰 룸으로 이동
+        </p>
+        <form th:method="post" th:action="@{/room}" th:object="${id}" id="form">
+            <input type="hidden" id="uuid" name="uuid" th:value="${uuid}"/>
+            <div class="row justify-content-md-center">
+                <div class="input-group col-md-6 mb-3 justify-content-md-center">
+                    <div class="mb-3" th:if="${not #lists.isEmpty(rooms)}" th:attr="data-uid=${uuid}">
+                        <label for="rooms-list">해당하는 인터뷰 룸 번호를 선택하시고 입장하세요:</label><br>
+                        <h4>
+                        <span id="rooms-list" th:each="r : ${rooms}">
+                            <a th:href="@{/room/{id}(id=${r.id})}" th:id="'button-link-'+${r.id}">
+                                <button type="button" name="action" th:text="${r.id}" th:value="${r.id}"
+                                        class="btn badge badge-primary" onclick="addUuidToButtonLink(this);">99
+                                </button>
+                            </a>
+                        </span>
+                        </h4>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id">새 룸을 만들려면 번호를 입력하거나 임의의 룸 번호를 생성하려면 '랜덤 룸 번호 생성 #' 버튼을 누르십시오. 룸 번호가 생성되면 해당 인터뷰 지원자 분께 안내하시면 됩니다.</label>
+                        <input class="form-control" name="id" id="id" type="number" placeholder="Min: 0, max: 99"
+                               min="0" max="99" th:value="${id}" required>
+                    </div>
+                    <div>
+                        <a th:href="@{/room/random}">
+                            <button class="btn btn-outline-success" type="button">랜덤 룸 번호 생성 #</button>
+                        </a>&emsp;
+                        <button name="action" value="create" type="submit" class="btn btn-outline-primary">
+                            룸 번호 생성</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<script src="/resources/js/main.js"></script>
+</body>
+</html>
