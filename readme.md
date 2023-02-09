@@ -25,5 +25,13 @@
 4. 팀원2
    > PPT 제작, 사이트 로고 제작, 기획 아이디어 회의, ERD 구성,통계 페이지 구현, 후기 게시판 구현, 유료 서비스 안내 페이지 구현
 ***
+- ## 핵심 기술
+1. Spring Boot Security
+2. WebSocket
+3. WebRTC
+   - Signaling Server : 스프링 부트 구현
+   - STUN Server : 구글서버 이용
+   - TURN Server : 구현 X
+   - Client Server : 자바스크립트 구현
 
 [디테일한 사항은 여기 링크로~~~](https://github.com/Paekma09/2nd-Project/files/10701280/2nd_Project.pdf)
